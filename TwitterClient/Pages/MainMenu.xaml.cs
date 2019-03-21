@@ -1,6 +1,9 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -11,6 +14,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using TweetSharp;
 
 namespace TwitterClient.Pages
 {
@@ -19,9 +23,19 @@ namespace TwitterClient.Pages
     /// </summary>
     public partial class MainMenu : Window
     {
+        TwitterAccount twitter;
+
+        FileStream mediaFile = null;
+
+        public ImageSource UserImage { get; set; }
+        public int UserTweets { get; set; }
+        public int UserFriends { get; set; }
+        public string UserName { get; set; }
+
         public MainMenu()
         {
             InitializeComponent();
         }
+
     }
 }
