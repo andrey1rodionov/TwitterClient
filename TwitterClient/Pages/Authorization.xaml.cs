@@ -42,5 +42,10 @@ namespace TwitterClient.Pages
         {
             twitter.PreAuthorization();
         }
+
+        private void TryAgain_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Diagnostics;
 using TweetSharp;
+using TwitterClient.Pages;
 
 namespace TwitterClient
 {
@@ -15,9 +16,16 @@ namespace TwitterClient
 
         OAuthRequestToken requestToken;
 
+        Pages.Authorization authorization; 
+
         public TwitterAuthorization(string consumerKey, string consumerSecret)
         {
             service = new TwitterService(consumerKey, consumerSecret);
+        }
+
+        public TwitterAuthorization(Authorization authorization)
+        {
+            this.authorization = authorization;
         }
 
         public void PreAuthorization()
@@ -37,7 +45,7 @@ namespace TwitterClient
         {
             if (service.GetAccountSettings() == null)
             {
-                MessageBox.Show("Ошибка авторизации!");
+                MessageBox.Show("Ошибка авторизации!");              
                 return false;
             }
             else
