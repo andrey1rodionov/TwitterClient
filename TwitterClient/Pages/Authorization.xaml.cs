@@ -19,19 +19,28 @@ namespace TwitterClient.Pages
     /// </summary>
     public partial class Authorization : Window
     {
+        TwitterAuthorization twitter;
+
         public Authorization()
         {
             InitializeComponent();
+            twitter = new TwitterAuthorization("LunW98nTNR2EnAaJLuVXvZZAY", 
+                "LQXZ4JgwJn07097PXv6MHEmreVXz943yZbBXYJTM0IVPz5ZsOA");
         }
 
         private void SendPin_Click(object sender, RoutedEventArgs e)
         {
+            twitter.VerifyAuthorization(PinTextBox.Text);
 
+            if (twitter.CheackAuthorization())
+            {
+                MessageBox.Show("Авторизация прошла успешно!");
+            }
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-
+            twitter.PreAuthorization();
         }
     }
 }
