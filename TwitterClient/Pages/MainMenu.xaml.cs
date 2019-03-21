@@ -15,11 +15,11 @@ using System.Windows.Shapes;
 namespace TwitterClient.Pages
 {
     /// <summary>
-    /// Логика взаимодействия для Account.xaml
+    /// Логика взаимодействия для MainMenu.xaml
     /// </summary>
-    public partial class Account : Window
+    public partial class MainMenu : Window
     {
-        public Account()
+        public MainMenu()
         {
             InitializeComponent();
         }

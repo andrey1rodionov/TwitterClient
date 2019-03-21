@@ -1,11 +1,11 @@
-﻿<Window x:Class="TwitterClient.Pages.Account"
+﻿<Window x:Class="TwitterClient.Pages.MainMenu"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TwitterClient.Pages"
         mc:Ignorable="d"
-        Title="Account" Height="450" Width="800">
+        Title="MainMenu" Height="450" Width="800">
     <Grid>
         
     </Grid>
