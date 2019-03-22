@@ -17,8 +17,7 @@
         </Grid.RowDefinitions>
 
         <TextBox Grid.Row="1" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" Width="80" Name="PinTextBox" FontSize="20" MaxLength="7" PreviewTextInput="PinTextBox_PreviewTextInput"/>
-        <Button Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" Name="SendPin" Content="Отправить" Click="SendPin_Click" FontSize="20" IsDefault="True"/>
+        <Button Grid.Row="2" x:FieldModifier="public" HorizontalAlignment="Center" VerticalAlignment="Center" Name="SendPin" Content="Отправить" Click="SendPin_Click" FontSize="20" IsDefault="True"/>
         <Button Grid.Row ="2" HorizontalAlignment="Center" VerticalAlignment="Center" Name="TryAgain" Content="Попробовать еще раз" Click="TryAgain_Click" FontSize="20" Visibility="Hidden"/>
-
     </Grid>
 </Window>

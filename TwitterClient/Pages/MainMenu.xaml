@@ -7,6 +7,141 @@
         mc:Ignorable="d"
         Title="MainMenu" Height="450" Width="800">
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="115*"/>
+            <ColumnDefinition Width="281*"/>
+        </Grid.ColumnDefinitions>
+
+        <Rectangle HorizontalAlignment="Right" Width="1" Fill="#FF673AB7"/>
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <Border Grid.Row="0" 
+                        Grid.ColumnSpan="2" 
+                        CornerRadius="50" 
+                        Width="50" 
+                        Height="50" 
+                        Margin="0, 30"
+                        ClipToBounds="True">
+                    <Border.Background>
+                        <ImageBrush ImageSource="{Binding Path=UserImage}" Stretch="UniformToFill"/>
+                    </Border.Background>
+                </Border>
+
+                <TextBlock Grid.Row="1" 
+                           Grid.ColumnSpan="2" 
+                           Text="{Binding Path=UserName}" 
+                           Opacity="0.7" 
+                           FontSize="30" 
+                           HorizontalAlignment="Center" />
+
+                <Grid Grid.Row="2" 
+                      Grid.Column="0" >
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Text="Friends"
+                               FontSize="16"
+                               Margin="0, 5"
+                               HorizontalAlignment="Center">
+                    </TextBlock>
+
+                    <TextBlock Text="{Binding Path=UserFriends}" 
+                               Grid.Row="1" 
+                               FontSize="20" 
+                               HorizontalAlignment="Center">
+                    </TextBlock>
+                </Grid>
+
+                <Grid Grid.Row="2" 
+                      Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Text="Tweets"
+                               FontSize="16"
+                               Margin="0, 5"
+                               HorizontalAlignment="Center">
+
+                    </TextBlock>
+
+                    <TextBlock x:Name="TweetCountBlock"
+                               HorizontalAlignment="Center"
+                               Text="{Binding Path=UserTweets}"
+                               Grid.Row="1"
+                               FontSize="20">
+                    </TextBlock>
+                </Grid>
+            </Grid>
+
+            <Grid Grid.Row="1" 
+                  VerticalAlignment="Top" 
+                  HorizontalAlignment="Center">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <Button Margin="20, 10" Grid.Row="0" HorizontalAlignment="Left" Content="Отправить твит" FontSize="20"  Click="ShowSendTweetComponentsButtonClick"/>
+                <Button Margin="20, 10" Grid.Row="1" HorizontalAlignment="Left" Content="Мои твиты" FontSize="20"  Click="ShowMyTweetsButtonClick"/>
+                <Button Margin="20, 10" Grid.Row="2" HorizontalAlignment="Left" Content="Лента" FontSize="20"  Click="ShowTweetsInLineButtonClick"/>
+            </Grid>
+        </Grid>
+
+        <ListBox Grid.Column="1" 
+                 Name="listboxTweeters" 
+                 FontSize="20" 
+                 HorizontalContentAlignment="Stretch" 
+                 VirtualizingPanel.ScrollUnit="Pixel">
+        </ListBox>
+
+        <Grid Name="SendTweetGrid" 
+              Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <Grid HorizontalAlignment="Stretch"
+                  Margin="50, 0"
+                  VerticalAlignment="Center">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Margin="0, 5" Text="Текст сообщения"/>
+
+                <TextBox Name="TweetContentTextBox" Grid.Row="1" HorizontalAlignment="Stretch" TextWrapping="Wrap" Height="80"/>
+
+                <Button Margin="0, 8" Grid.Row="2" Style="{DynamicResource MaterialDesignFloatingActionButton}" HorizontalAlignment="Left" Height="40" Width="40" Click="AddFileToTweetButtonClick">
+                    <Image Margin="8" Source="file.png"/>
+                </Button>
+            </Grid>
+
+            <Button Margin="10" Grid.Row="1" Content="Отправить" HorizontalAlignment="Center" Click="SendTweetButtonClick"/>
+        </Grid>
     </Grid>
 </Window>
