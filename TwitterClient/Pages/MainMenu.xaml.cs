@@ -37,5 +37,29 @@ namespace TwitterClient.Pages
             InitializeComponent();
         }
 
+        private void AddFileToTweet_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ShowTweetsInLine_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ShowMyTweets_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ShowSendTweetComponents_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void SendTweet_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

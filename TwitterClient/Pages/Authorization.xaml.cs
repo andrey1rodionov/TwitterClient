@@ -35,7 +35,10 @@ namespace TwitterClient.Pages
 
             if (twitter.CheackAuthorization())
             {
-                MessageBox.Show("Авторизация прошла успешно!");
+                MainMenu main = new MainMenu();
+                this.Hide();
+                main.ShowDialog();
+                this.Close();
             }
         }
 
