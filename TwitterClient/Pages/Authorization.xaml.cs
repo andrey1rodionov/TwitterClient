@@ -20,36 +20,23 @@ namespace TwitterClient.Pages
     /// </summary>
     public partial class Authorization : Window
     {
-        TwitterAuthorization twitter;
+        TwitterService twitter;
 
-        public Authorization()
+        public Authorization(TwitterService twitter)
         {
             InitializeComponent();
-            twitter = new TwitterAuthorization("LunW98nTNR2EnAaJLuVXvZZAY", 
-                "LQXZ4JgwJn07097PXv6MHEmreVXz943yZbBXYJTM0IVPz5ZsOA");
+            this.twitter = twitter;
         }
 
         private void SendPin_Click(object sender, RoutedEventArgs e)
         {
             twitter.VerifyAuthorization(PinTextBox.Text);
-
-            if (twitter.CheackAuthorization())
-            {
-                MainMenu main = new MainMenu();
-                this.Hide();
-                main.ShowDialog();
-                this.Close();
-            }
+            this.Close();
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             twitter.PreAuthorization();
-        }
-
-        private void TryAgain_Click(object sender, RoutedEventArgs e)
-        {
-
         }
 
         private void PinTextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)

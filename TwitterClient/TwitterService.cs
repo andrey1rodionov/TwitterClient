@@ -9,15 +9,20 @@ using TweetSharp;
 
 namespace TwitterClient
 {
-    class TwitterAuthorization
+    public class TwitterService
     {
         ITwitterService service;
 
         OAuthRequestToken requestToken;
 
-        public TwitterAuthorization(string consumerKey, string consumerSecret)
+        public TwitterService(string consumerKey, string consumerSecret)
         {
-            service = new TwitterService(consumerKey, consumerSecret);
+            service = new TweetSharp.TwitterService(consumerKey, consumerSecret);
+        }
+
+        public TwitterUser GetUserInfo()
+        {
+            return service.GetUserProfile(new GetUserProfileOptions() { IncludeEntities = false, SkipStatus = false });
         }
 
         public void PreAuthorization()

@@ -54,11 +54,10 @@
                            Opacity="0.7" 
                            FontSize="30" 
                            HorizontalAlignment="Center">
-
                 </TextBlock>
-
+                
                 <Grid Grid.Row="2" 
-                      Grid.Column="0">
+                      Grid.Column="0" >
                     <Grid.RowDefinitions>
                         <RowDefinition/>
                         <RowDefinition/>
@@ -66,16 +65,14 @@
 
                     <TextBlock Text="Твиты"
                                FontSize="16"
-                               Margin="0, 5"
+                               Margin="2,5"
                                HorizontalAlignment="Center" FontFamily="Verdana">
-
                     </TextBlock>
 
-                    <TextBlock x:Name="TweetCountBlock"
-                               HorizontalAlignment="Center"
-                               Text="{Binding Path=UserTweets}"
-                               Grid.Row="1"
-                               FontSize="20">
+                    <TextBlock Text="{Binding Path=UserTweets}"
+                               Grid.Row="1" 
+                               FontSize="20" 
+                               HorizontalAlignment="Center" FontFamily="Verdana">
                     </TextBlock>
                 </Grid>
 
@@ -92,15 +89,15 @@
                                HorizontalAlignment="Center" FontFamily="Verdana">
                     </TextBlock>
 
-                    <TextBlock Text="{Binding Path=UserFriends}" 
+                    <TextBlock Text="{Binding Path=UserFollowing}"
                                Grid.Row="1" 
                                FontSize="20" 
-                               HorizontalAlignment="Center">
+                               HorizontalAlignment="Center" FontFamily="Verdana">
                     </TextBlock>
                 </Grid>
 
                 <Grid Grid.Row="2" 
-                      Grid.Column="2" Margin="1,0,0,0" Width="87" >
+                      Grid.Column="2" >
                     <Grid.RowDefinitions>
                         <RowDefinition/>
                         <RowDefinition/>
@@ -108,14 +105,14 @@
 
                     <TextBlock Text="Читатели"
                                FontSize="16"
-                               Margin="0, 5"
+                               Margin="2,5"
                                HorizontalAlignment="Center" FontFamily="Verdana">
                     </TextBlock>
 
-                    <TextBlock Text="{Binding Path=UserFriends}" 
+                    <TextBlock Text="{Binding Path=UserFollowers}"
                                Grid.Row="1" 
                                FontSize="20" 
-                               HorizontalAlignment="Center">
+                               HorizontalAlignment="Center" FontFamily="Verdana">
                     </TextBlock>
                 </Grid>
             </Grid>
