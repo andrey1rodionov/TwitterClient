@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TwitterClient.Pages"
         mc:Ignorable="d"
-        Title="MainMenu" Height="450" Width="800" WindowStartupLocation="CenterScreen">
+        Title="TwitterClient" Height="450" Width="800" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="265*"/>
@@ -17,7 +17,9 @@
             </MenuItem>
         </Menu>
 
-        <Rectangle HorizontalAlignment="Right" Width="1" Fill="#00bdd5"/>
+        <Rectangle 
+            HorizontalAlignment="Right" Width="1" Fill="#00bdd5">
+        </Rectangle>
 
         <Grid Margin="1,0,0,0">
             <Grid.RowDefinitions>
@@ -39,23 +41,23 @@
                 </Grid.ColumnDefinitions>
 
                 <Border Grid.Row="0" 
-                        CornerRadius="50" 
-                        Height="50" 
-                        Margin="0,30"
-                        ClipToBounds="True" Grid.Column="1">
+                        Grid.ColumnSpan="3" 
+                        CornerRadius="25" 
+                        Margin="75,8,75,60"
+                        ClipToBounds="True" Grid.RowSpan="2">
                     <Border.Background>
                         <ImageBrush ImageSource="{Binding Path=UserImage}" Stretch="UniformToFill"/>
                     </Border.Background>
                 </Border>
 
-                <TextBlock Grid.Row="1" 
-                           Grid.ColumnSpan="2" 
+                <TextBlock Grid.Row="1"
+                           Grid.ColumnSpan="3"
                            Text="{Binding Path=UserName}" 
                            Opacity="0.7" 
-                           FontSize="30" 
-                           HorizontalAlignment="Center">
+                           FontSize="27" 
+                           HorizontalAlignment="Center" Margin="44,23,44,0">
                 </TextBlock>
-                
+
                 <Grid Grid.Row="2" 
                       Grid.Column="0" >
                     <Grid.RowDefinitions>
