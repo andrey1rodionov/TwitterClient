@@ -6,7 +6,6 @@
         xmlns:local="clr-namespace:TwitterClient.Pages"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         Background="{DynamicResource MaterialDesignPaper}"
-        FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
         mc:Ignorable="d"
         Title="Settings" Height="350" Width="500" WindowStartupLocation="CenterScreen">
     <Grid>

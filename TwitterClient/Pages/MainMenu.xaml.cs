@@ -41,6 +41,12 @@ namespace TwitterClient.Pages
             DataContext = this;
         }
 
+        public void HideSendTweetComponents()
+        {
+            SendTweetGrid.Visibility = Visibility.Hidden;
+            ListBoxTweets.Visibility = Visibility.Visible;
+        }
+
         public void ShowUserInfo(TwitterUser user)
         {
             UserImage = GetImage(user.ProfileImageUrlHttps);
@@ -80,6 +86,28 @@ namespace TwitterClient.Pages
             return image;
         }
 
+        public async void ShowTweets(IEnumerable<TwitterStatus> tweets)
+        {
+            if (tweets == null)
+            {
+                return;
+            }
+
+            foreach (var tweet in tweets)
+            {
+                await Task.Run(() =>
+                {
+                    Dispatcher.Invoke(() =>
+                    {
+                        Tweet TweetInList = new Tweet(tweet);
+                        TweetInList.Retweet += twitter.RetweetTweet;
+                        //TweetInList.Retweet += this.IncreasetweetCount;
+                        ListBoxTweets.Items.Add(TweetInList);
+                    });
+                });
+            }
+        }
+
         private void AddFileToTweet_Click(object sender, RoutedEventArgs e)
         {
 
@@ -87,12 +115,18 @@ namespace TwitterClient.Pages
 
         private void ShowTweetsInLine_Click(object sender, RoutedEventArgs e)
         {
+            HideSendTweetComponents();
 
+            ListBoxTweets.Items.Clear();
+            ShowTweets(twitter.GetTweetsInLine());
         }
 
         private void ShowMyTweets_Click(object sender, RoutedEventArgs e)
         {
+            HideSendTweetComponents();
 
+            ListBoxTweets.Items.Clear();
+            ShowTweets(twitter.GetMyTweets());
         }
 
         private void ShowSendTweetComponents_Click(object sender, RoutedEventArgs e)

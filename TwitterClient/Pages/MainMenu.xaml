@@ -7,7 +7,6 @@
         mc:Ignorable="d"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         Background="{DynamicResource MaterialDesignPaper}"
-        FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
         Title="TwitterClient" Height="450" Width="800" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.ColumnDefinitions>
@@ -138,13 +137,13 @@
         </Grid>
 
         <ListBox Grid.Column="1" 
-                 Name="listboxTweeters" 
+                 Name="ListBoxTweets" 
                  FontSize="20" 
                  HorizontalContentAlignment="Stretch" 
                  VirtualizingPanel.ScrollUnit="Pixel">
         </ListBox>
 
-        <Grid Name="SendTweetGrid" 
+        <Grid Name="SendTweetGrid"
               Grid.Column="1">
             <Grid.RowDefinitions>
                 <RowDefinition/>

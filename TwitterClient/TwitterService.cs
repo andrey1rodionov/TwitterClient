@@ -48,5 +48,23 @@ namespace TwitterClient
             else
                 return true;
         }
+
+        public void RetweetTweet(long TweetId)
+        {
+            service.Retweet(new RetweetOptions
+            {
+                Id = TweetId
+            });
+        }
+
+        public IEnumerable<TwitterStatus> GetTweetsInLine()
+        {
+            return service.ListTweetsOnHomeTimeline(new ListTweetsOnHomeTimelineOptions());
+        }
+
+        public IEnumerable<TwitterStatus> GetMyTweets()
+        {
+            return service.ListTweetsOnUserTimeline(new ListTweetsOnUserTimelineOptions());
+        }
     }
 }

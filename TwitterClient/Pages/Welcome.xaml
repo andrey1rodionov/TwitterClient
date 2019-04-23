@@ -7,7 +7,6 @@
         mc:Ignorable="d"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         Background="{DynamicResource MaterialDesignPaper}"
-        FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
         Title="TwitterClient" Height="350" Width="550" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.RowDefinitions>
