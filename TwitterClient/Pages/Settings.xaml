@@ -1,0 +1,31 @@
+﻿<Window x:Class="TwitterClient.Pages.Settings"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TwitterClient.Pages"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
+        mc:Ignorable="d"
+        Title="Settings" Height="350" Width="500" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <Label Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Content="Настройки" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Verdana" FontSize="29" FontWeight="Bold"></Label>
+        <Label Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4" Content="Выберите тему для приложения" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Verdana" FontSize="21"></Label>
+        <Button Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Width="155" Content="Светлая" FontFamily="Verdana" FontSize="16" FontWeight="Bold" Click="Light_Click"></Button>
+        <Button Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2" Width="155" Content="Темная" FontFamily="Verdana" FontSize="16" FontWeight="Bold" Click="Dark_Click"></Button>
+    </Grid>
+</Window>

@@ -104,5 +104,11 @@ namespace TwitterClient.Pages
         {
 
         }
+
+        private void OpenSettings_Click(object sender, RoutedEventArgs e)
+        {
+            Settings settings = new Settings();
+            settings.ShowDialog();
+        }
     }
 }

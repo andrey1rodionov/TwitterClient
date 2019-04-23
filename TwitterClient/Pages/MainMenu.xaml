@@ -5,6 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TwitterClient.Pages"
         mc:Ignorable="d"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
         Title="TwitterClient" Height="450" Width="800" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.ColumnDefinitions>
@@ -13,7 +16,7 @@
         </Grid.ColumnDefinitions>
 
         <Menu Height="25" VerticalAlignment="Top">
-            <MenuItem Header="Настройки" Height="25" FontFamily="Verdana" FontSize="14">
+            <MenuItem Header="Настройки" Height="25" FontFamily="Verdana" FontSize="14" Click="OpenSettings_Click">
             </MenuItem>
         </Menu>
 
@@ -129,8 +132,8 @@
                 </Grid.RowDefinitions>
 
                 <Button Margin="20, 10" Grid.Row="0" HorizontalAlignment="Left" Content="Написать твит" FontSize="20"  Click="ShowSendTweetComponents_Click" UseLayoutRounding="False" FontFamily="Verdana"/>
-                <Button Margin="20, 10" Grid.Row="1" HorizontalAlignment="Left" Content="Мои твиты" FontSize="20"  Click="ShowMyTweets_Click" UseLayoutRounding="False" FontFamily="Verdana"/>
-                <Button Margin="20, 10" Grid.Row="2" Content="Лента" FontSize="20"  Click="ShowTweetsInLine_Click" HorizontalAlignment="Left" FontFamily="Verdana"/>
+                <Button Margin="20, 10" Grid.Row="1" HorizontalAlignment="Left" Content="Мои твиты" FontSize="20"  Click="ShowMyTweets_Click" UseLayoutRounding="False" FontFamily="Verdana" Width="180"/>
+                <Button Margin="20, 10" Grid.Row="2" Content="Лента" FontSize="20"  Click="ShowTweetsInLine_Click" HorizontalAlignment="Left" FontFamily="Verdana" Width="180"/>
             </Grid>
         </Grid>
 
@@ -164,7 +167,7 @@
                 </Button>
             </Grid>
 
-            <Button Margin="196,61,194,108" Grid.Row="1" Content="Твитнуть" HorizontalAlignment="Center" Click="SendTweet_Click" Height="37" Width="140" FontFamily="Verdana" FontSize="20"/>
+            <Button Margin="174,62,173,109" Grid.Row="1" Content="Твитнуть" HorizontalAlignment="Center" Click="SendTweet_Click" Height="33" Width="180" FontFamily="Verdana" FontSize="20"/>
         </Grid>
     </Grid>
 </Window>
