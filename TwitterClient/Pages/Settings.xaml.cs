@@ -29,6 +29,7 @@ namespace TwitterClient.Pages
             Uri uri = new Uri($"pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml");
             Application.Current.Resources.MergedDictionaries.RemoveAt(0);
             Application.Current.Resources.MergedDictionaries.Insert(0, new ResourceDictionary() { Source = uri });
+            this.Close();
         }
 
         private void Dark_Click(object sender, RoutedEventArgs e)
@@ -36,6 +37,7 @@ namespace TwitterClient.Pages
             Uri uri = new Uri($"pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Dark.xaml");
             Application.Current.Resources.MergedDictionaries.RemoveAt(0);
             Application.Current.Resources.MergedDictionaries.Insert(0, new ResourceDictionary() { Source = uri });
+            this.Close();
         }
     }
 }
