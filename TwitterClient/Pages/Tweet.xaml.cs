@@ -19,6 +19,7 @@ using TweetSharp;
 
 namespace TwitterClient.Pages
 {
+    /// #FF673AB7
     /// <summary>
     /// Логика взаимодействия для Tweet.xaml
     /// </summary>
