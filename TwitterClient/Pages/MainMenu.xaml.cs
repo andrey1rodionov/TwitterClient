@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -29,6 +30,8 @@ namespace TwitterClient.Pages
 
         FileStream mediaFile = null;
 
+        static object locker = new object();
+
         public ImageSource UserImage { get; set; }
         public int UserTweets { get; set; }
         public int UserFollowing { get; set; }
@@ -44,12 +47,6 @@ namespace TwitterClient.Pages
             DataContext = this;
         }
 
-        public void HideSendTweetComponents()
-        {
-            SendTweetGrid.Visibility = Visibility.Hidden;
-            ListBoxTweets.Visibility = Visibility.Visible;
-        }
-
         public void ShowUserInfo(TwitterUser user)
         {
             UserImage = GetImage(user.ProfileImageUrlHttps);
@@ -57,6 +54,18 @@ namespace TwitterClient.Pages
             UserFollowing = user.FriendsCount;
             UserFollowers = user.FollowersCount;
             UserName = user.Name;
+        }
+
+        public void HideSendTweetComponents()
+        {
+            SendTweetGrid.Visibility = Visibility.Hidden;
+            ListBoxTweets.Visibility = Visibility.Visible;
+        }
+
+        public void ShowSendTweetComponents()
+        {
+            SendTweetGrid.Visibility = Visibility.Visible;
+            ListBoxTweets.Visibility = Visibility.Hidden;
         }
 
         public ImageSource GetImage(string path)
@@ -111,9 +120,35 @@ namespace TwitterClient.Pages
             }
         }
 
+        private void AddFile()
+        {
+            mediaFile = null;
+
+            OpenFileDialog openFile = new OpenFileDialog
+            {
+                Filter = "(*.jpg)|*.jpg|All files (*.*)|*.*"
+            };
+
+            bool? result = openFile.ShowDialog();
+
+            if (result == true)
+            {
+                try
+                {
+                    //ShowFile.Source = new BitmapImage(new Uri(openFile.FileName));
+
+                    mediaFile = new FileStream(openFile.FileName, FileMode.Open);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.ToString() + ": \n" + ex.Message);
+                }
+            }
+        }
+
         private void AddFileToTweet_Click(object sender, RoutedEventArgs e)
         {
-
+            AddFile();
         }
 
         private void ShowTweetsInLine_Click(object sender, RoutedEventArgs e)
@@ -134,18 +169,29 @@ namespace TwitterClient.Pages
 
         private void ShowSendTweetComponents_Click(object sender, RoutedEventArgs e)
         {
-
+            ShowSendTweetComponents();
         }
 
         private void SendTweet_Click(object sender, RoutedEventArgs e)
         {
-
+            getTweets.PublishTweet(TweetContentTextBox.Text, mediaFile);
+            mediaFile = null;
         }
 
         private void OpenSettings_Click(object sender, RoutedEventArgs e)
         {
             Settings settings = new Settings();
             settings.ShowDialog();
+        }
+
+        private void TweetContentTextBox_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            string DefaultText = "Что нового?";
+
+            if (TweetContentTextBox.Text == DefaultText)
+            {
+                TweetContentTextBox.Clear();
+            }
         }
     }
 }

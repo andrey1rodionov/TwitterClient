@@ -159,11 +159,13 @@
                     <RowDefinition Height="59*"/>
                 </Grid.RowDefinitions>
 
-                <TextBox Name="TweetContentTextBox" HorizontalAlignment="Stretch" TextWrapping="Wrap" Margin="0,0,-1,54" Grid.RowSpan="2" MaxLength="280" Text="Что нового?" FontFamily="Verdana" Grid.Row="1"/>
+                <TextBox Name="TweetContentTextBox" HorizontalAlignment="Stretch" TextWrapping="Wrap" Margin="0,0,-1,54" Grid.RowSpan="2" MaxLength="280" Text="Что нового?" FontFamily="Verdana" Grid.Row="1" MouseDown="TweetContentTextBox_MouseDown"/>
 
                 <Button Margin="3,12,0,7" Grid.Row="2" Style="{DynamicResource MaterialDesignFloatingActionButton}" HorizontalAlignment="Left" Height="Auto" Width="40" Click="AddFileToTweet_Click">
                     <Image Margin="8" Source="/Images/File.png"/>
                 </Button>
+
+                <Image Grid.Row="2" Name="ShowFile" Margin="50,65,325,-86"></Image>
             </Grid>
 
             <Button Margin="174,62,173,109" Grid.Row="1" Content="Твитнуть" HorizontalAlignment="Center" Click="SendTweet_Click" Height="33" Width="180" FontFamily="Verdana" FontSize="20"/>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,12 +22,23 @@ namespace TwitterClient
             return service.GetUserProfile(new GetUserProfileOptions() { IncludeEntities = false, SkipStatus = false });
         }
 
-        public void RetweetTweet(long TweetId)
+        public void PublishTweet(string text, FileStream mediaFile)
         {
-            service.Retweet(new RetweetOptions
+            if (mediaFile != null)
             {
-                Id = TweetId
-            });
+                service.SendTweetWithMedia(new SendTweetWithMediaOptions
+                {
+                    Status = text,
+                    Images = new Dictionary<string, Stream> { { "pic", mediaFile } }
+                });
+            }
+            else
+            {
+                service.SendTweet(new SendTweetOptions
+                {
+                    Status = text
+                });
+            }
         }
 
         public IEnumerable<TwitterStatus> GetTweetsInLine()
@@ -37,6 +49,14 @@ namespace TwitterClient
         public IEnumerable<TwitterStatus> GetMyTweets()
         {
             return service.ListTweetsOnUserTimeline(new ListTweetsOnUserTimelineOptions());
+        }
+
+        public void RetweetTweet(long TweetId)
+        {
+            service.Retweet(new RetweetOptions
+            {
+                Id = TweetId
+            });
         }
     }
 }
