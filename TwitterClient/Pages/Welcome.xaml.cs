@@ -21,11 +21,15 @@ namespace TwitterClient.Pages
     {
         TwitterService twitter;
 
+        UserAuthorization userAuthorization;
+
         public Welcome()
         {
             InitializeComponent();
             twitter = new TwitterService("LunW98nTNR2EnAaJLuVXvZZAY",
                 "LQXZ4JgwJn07097PXv6MHEmreVXz943yZbBXYJTM0IVPz5ZsOA");
+            this.twitter = twitter;
+            this.userAuthorization = new UserAuthorization(this.twitter.service);
         }
 
         private void Authorization_Click(object sender, RoutedEventArgs e)
@@ -35,7 +39,7 @@ namespace TwitterClient.Pages
             authorization.ShowDialog();
             authorization.Close();
 
-            if (twitter.CheackAuthorization())
+            if (userAuthorization.CheackAuthorization())
             {
                 MainMenu main = new MainMenu(twitter);
                 this.Hide();

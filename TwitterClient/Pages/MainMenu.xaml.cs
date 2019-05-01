@@ -25,6 +25,8 @@ namespace TwitterClient.Pages
     {
         TwitterService twitter;
 
+        GetTweets getTweets;
+
         FileStream mediaFile = null;
 
         public ImageSource UserImage { get; set; }
@@ -37,7 +39,8 @@ namespace TwitterClient.Pages
         {
             InitializeComponent();
             this.twitter = twitter;
-            ShowUserInfo(twitter.GetUserInfo());
+            this.getTweets = new GetTweets(this.twitter.service);
+            ShowUserInfo(getTweets.GetUserInfo());
             DataContext = this;
         }
 
@@ -100,7 +103,7 @@ namespace TwitterClient.Pages
                     Dispatcher.Invoke(() =>
                     {
                         Tweet TweetInList = new Tweet(tweet);
-                        TweetInList.Retweet += twitter.RetweetTweet;
+                        TweetInList.Retweet += getTweets.RetweetTweet;
                         //TweetInList.Retweet += this.IncreasetweetCount;
                         ListBoxTweets.Items.Add(TweetInList);
                     });
@@ -118,7 +121,7 @@ namespace TwitterClient.Pages
             HideSendTweetComponents();
 
             ListBoxTweets.Items.Clear();
-            ShowTweets(twitter.GetTweetsInLine());
+            ShowTweets(getTweets.GetTweetsInLine());
         }
 
         private void ShowMyTweets_Click(object sender, RoutedEventArgs e)
@@ -126,7 +129,7 @@ namespace TwitterClient.Pages
             HideSendTweetComponents();
 
             ListBoxTweets.Items.Clear();
-            ShowTweets(twitter.GetMyTweets());
+            ShowTweets(getTweets.GetMyTweets());
         }
 
         private void ShowSendTweetComponents_Click(object sender, RoutedEventArgs e)

@@ -22,21 +22,24 @@ namespace TwitterClient.Pages
     {
         TwitterService twitter;
 
+        UserAuthorization userAuthorization;
+
         public Authorization(TwitterService twitter)
         {
             InitializeComponent();
             this.twitter = twitter;
+            this.userAuthorization = new UserAuthorization(this.twitter.service);
         }
 
         private void SendPin_Click(object sender, RoutedEventArgs e)
         {
-            twitter.VerifyAuthorization(PinTextBox.Text);
+            userAuthorization.VerifyAuthorization(PinTextBox.Text);
             this.Close();
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            twitter.PreAuthorization();
+            userAuthorization.PreAuthorization();
         }
 
         private void PinTextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
