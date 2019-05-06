@@ -166,7 +166,9 @@
     <Resource Include="Images\Teal.png" />
     <Resource Include="Images\TealWithLine.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Images\GreenCheckMark.png" />
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="Files\Settings.xml" />
   </ItemGroup>

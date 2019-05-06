@@ -30,8 +30,6 @@ namespace TwitterClient.Pages
 
         FileStream mediaFile = null;
 
-        static object locker = new object();
-
         public ImageSource UserImage { get; set; }
         public int UserTweets { get; set; }
         public int UserFollowing { get; set; }
@@ -142,11 +140,17 @@ namespace TwitterClient.Pages
                     MessageBox.Show(ex.ToString() + ": \n" + ex.Message);
                 }
             }
+
+            if (mediaFile != null)
+            {
+                GreenMark.Source = new BitmapImage(new Uri("/Images/GreenCheckMark.png", UriKind.Relative));
+            }
         }
 
         private void AddFileToTweet_Click(object sender, RoutedEventArgs e)
         {
             AddFile();
+
         }
 
         private void ShowTweetsInLine_Click(object sender, RoutedEventArgs e)
@@ -173,6 +177,7 @@ namespace TwitterClient.Pages
         private void SendTweet_Click(object sender, RoutedEventArgs e)
         {
             getTweets.PublishTweet(TweetContentTextBox.Text, mediaFile);
+            GreenMark.Source = null;
             mediaFile = null;
         }
 

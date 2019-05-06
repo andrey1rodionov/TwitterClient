@@ -165,7 +165,7 @@
                     <Image Margin="8" Source="/Images/File.png"/>
                 </Button>
 
-                <Image Grid.Row="2" Name="ShowFile" Margin="50,65,325,-86"></Image>
+                <Image Grid.Row="2" Name="GreenMark" Margin="55,12,365,7"></Image>
             </Grid>
 
             <Button Margin="174,62,173,109" Grid.Row="1" Content="Твитнуть" HorizontalAlignment="Center" Click="SendTweet_Click" Height="33" Width="180" FontFamily="Verdana" FontSize="20"/>
