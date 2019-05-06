@@ -30,6 +30,8 @@ namespace TwitterClient.Pages
 
         FileStream mediaFile = null;
 
+        bool checkImage = false;
+
         public ImageSource UserImage { get; set; }
         public int UserTweets { get; set; }
         public int UserFollowing { get; set; }
@@ -150,7 +152,6 @@ namespace TwitterClient.Pages
         private void AddFileToTweet_Click(object sender, RoutedEventArgs e)
         {
             AddFile();
-
         }
 
         private void ShowTweetsInLine_Click(object sender, RoutedEventArgs e)
@@ -187,13 +188,30 @@ namespace TwitterClient.Pages
             settings.ShowDialog();
         }
 
-        private void TweetContentTextBox_MouseDown(object sender, MouseButtonEventArgs e)
+        private void GreenMark_MouseEnter(object sender, MouseEventArgs e)
         {
-            string DefaultText = "Что нового?";
-
-            if (TweetContentTextBox.Text == DefaultText)
+            if (GreenMark.Source != null)
             {
-                TweetContentTextBox.Clear();
+                GreenMark.Source = new BitmapImage(new Uri("/Images/RedCross.png", UriKind.Relative));
+                checkImage = true;
+            }
+        }
+
+        private void GreenMark_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (checkImage == true)
+            {
+                mediaFile = null;
+                GreenMark.Source = null;
+            }
+        }
+
+        private void GreenMark_MouseLeave(object sender, MouseEventArgs e)
+        {
+            if (GreenMark.Source != null)
+            {
+                GreenMark.Source = new BitmapImage(new Uri("/Images/GreenCheckMark.png", UriKind.Relative));
+                checkImage = false;
             }
         }
     }

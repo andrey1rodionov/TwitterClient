@@ -20,7 +20,7 @@
         </Menu>
 
         <Rectangle 
-            HorizontalAlignment="Right" Width="1" Fill="#00bdd5">
+            HorizontalAlignment="Right" Width="1" Fill="#009789">
         </Rectangle>
 
         <Grid Margin="1,0,0,0">
@@ -159,13 +159,13 @@
                     <RowDefinition Height="59*"/>
                 </Grid.RowDefinitions>
 
-                <TextBox Name="TweetContentTextBox" HorizontalAlignment="Stretch" TextWrapping="Wrap" Margin="0,0,-1,54" Grid.RowSpan="2" MaxLength="280" Text="Что нового?" FontFamily="Verdana" Grid.Row="1" MouseDown="TweetContentTextBox_MouseDown"/>
+                <TextBox Name="TweetContentTextBox" HorizontalAlignment="Stretch" TextWrapping="Wrap" Margin="0,0,-1,54" Grid.RowSpan="2" MaxLength="280" FontFamily="Verdana" Grid.Row="1"/>
 
                 <Button Margin="3,12,0,7" Grid.Row="2" Style="{DynamicResource MaterialDesignFloatingActionButton}" HorizontalAlignment="Left" Height="Auto" Width="40" Click="AddFileToTweet_Click">
                     <Image Margin="8" Source="/Images/File.png"/>
                 </Button>
 
-                <Image Grid.Row="2" Name="GreenMark" Margin="55,12,365,7"></Image>
+                <Image Grid.Row="2" Name="GreenMark" Margin="55,15,371,10" MouseEnter="GreenMark_MouseEnter" MouseDown="GreenMark_MouseDown" MouseLeave="GreenMark_MouseLeave"></Image>
             </Grid>
 
             <Button Margin="174,62,173,109" Grid.Row="1" Content="Твитнуть" HorizontalAlignment="Center" Click="SendTweet_Click" Height="33" Width="180" FontFamily="Verdana" FontSize="20"/>
