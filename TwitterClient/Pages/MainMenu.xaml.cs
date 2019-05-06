@@ -135,8 +135,6 @@ namespace TwitterClient.Pages
             {
                 try
                 {
-                    //ShowFile.Source = new BitmapImage(new Uri(openFile.FileName));
-
                     mediaFile = new FileStream(openFile.FileName, FileMode.Open);
                 }
                 catch (Exception ex)

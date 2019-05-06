@@ -47,5 +47,10 @@ namespace TwitterClient.Pages
                 this.Close();
             }
         }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            userAuthorization.LoadSettings();
+        }
     }
 }

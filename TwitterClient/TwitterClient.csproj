@@ -166,5 +166,9 @@
     <Resource Include="Images\Teal.png" />
     <Resource Include="Images\TealWithLine.png" />
   </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Files\Settings.xml" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Xml.Linq;
 
 namespace TwitterClient.Pages
 {
@@ -19,7 +20,11 @@ namespace TwitterClient.Pages
     /// </summary>
     public partial class Settings : Window
     {
-        private int check = 0;
+        static XDocument xDoc = XDocument.Load("../../Files/Settings.xml");
+        XElement root = xDoc.Element("Settings");
+
+        private int checkTheme = 0;
+        private int checkColor = 0;
 
         public Settings()
         {
@@ -28,23 +33,45 @@ namespace TwitterClient.Pages
 
         private void Light_Click(object sender, RoutedEventArgs e)
         {
+            checkTheme = 1;
+
+            foreach (XElement xElement in root.Elements("Save").ToList())
+            {
+                xElement.Element("Theme").Value = checkTheme.ToString();
+            }
+            xDoc.Save("../../Files/Settings.xml");
+
             Uri uri = new Uri($"pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml");
             Application.Current.Resources.MergedDictionaries.RemoveAt(0);
             Application.Current.Resources.MergedDictionaries.Insert(0, new ResourceDictionary() { Source = uri });
-            this.Close();
+            //this.Close();
         }
 
         private void Dark_Click(object sender, RoutedEventArgs e)
         {
+            checkTheme = 2;
+
+            foreach (XElement xElement in root.Elements("Save").ToList())
+            {
+                xElement.Element("Theme").Value = checkTheme.ToString();
+            }
+            xDoc.Save("../../Files/Settings.xml");
+
             Uri uri = new Uri($"pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Dark.xaml");
             Application.Current.Resources.MergedDictionaries.RemoveAt(0);
             Application.Current.Resources.MergedDictionaries.Insert(0, new ResourceDictionary() { Source = uri });
-            this.Close();
+            //this.Close();
         }
 
         private void Cyan_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            check = 1;
+            checkColor = 1;
+
+            foreach (XElement xElement in root.Elements("Save").ToList())
+            {
+                xElement.Element("Color").Value = checkColor.ToString();
+            }
+            xDoc.Save("../../Files/Settings.xml");
 
             Uri uri = new Uri($"pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.Cyan.xaml");
             Application.Current.Resources.MergedDictionaries.RemoveAt(2);
@@ -52,7 +79,7 @@ namespace TwitterClient.Pages
 
             Cyan.Source = new BitmapImage(new Uri("/Images/CyanWithLine.png", UriKind.Relative));
 
-            if (check == 1)
+            if (checkColor == 1)
             {
                 DeepPurple.Source = new BitmapImage(new Uri("/Images/DeepPurple.png", UriKind.Relative));
                 Teal.Source = new BitmapImage(new Uri("/Images/Teal.png", UriKind.Relative));
@@ -61,7 +88,13 @@ namespace TwitterClient.Pages
 
         private void DeepPurple_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            check = 2;
+            checkColor = 2;
+
+            foreach (XElement xElement in root.Elements("Save").ToList())
+            {
+                xElement.Element("Color").Value = checkColor.ToString();
+            }
+            xDoc.Save("../../Files/Settings.xml");
 
             Uri uri = new Uri($"pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.DeepPurple.xaml");
             Application.Current.Resources.MergedDictionaries.RemoveAt(2);
@@ -69,7 +102,7 @@ namespace TwitterClient.Pages
 
             DeepPurple.Source = new BitmapImage(new Uri("/Images/DeepPurpleWithLine.png", UriKind.Relative));
 
-            if (check == 2)
+            if (checkColor == 2)
             {
                 Cyan.Source = new BitmapImage(new Uri("/Images/Cyan.png", UriKind.Relative));
                 Teal.Source = new BitmapImage(new Uri("/Images/Teal.png", UriKind.Relative));
@@ -78,7 +111,13 @@ namespace TwitterClient.Pages
 
         private void Teal_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            check = 3;
+            checkColor = 3;
+
+            foreach (XElement xElement in root.Elements("Save").ToList())
+            {
+                xElement.Element("Color").Value = checkColor.ToString();
+            }
+            xDoc.Save("../../Files/Settings.xml");
 
             Uri uri = new Uri($"pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.Teal.xaml");
             Application.Current.Resources.MergedDictionaries.RemoveAt(2);
@@ -86,7 +125,7 @@ namespace TwitterClient.Pages
 
             Teal.Source = new BitmapImage(new Uri("/Images/TealWithLine.png", UriKind.Relative));
 
-            if (check == 3)
+            if (checkColor == 3)
             {
                 Cyan.Source = new BitmapImage(new Uri("/Images/Cyan.png", UriKind.Relative));
                 DeepPurple.Source = new BitmapImage(new Uri("/Images/DeepPurple.png", UriKind.Relative));
