@@ -201,6 +201,7 @@ namespace TwitterClient.Pages
         {
             if (checkImage == true)
             {
+                mediaFile.Dispose();
                 mediaFile = null;
                 GreenMark.Source = null;
             }
