@@ -20,11 +20,12 @@ namespace TwitterClient.Pages
     /// </summary>
     public partial class Settings : Window
     {
-        static XDocument xDoc = XDocument.Load("../../Files/Settings.xml");
-        XElement root = xDoc.Element("Settings");
-
         private int checkTheme = 0;
         private int checkColor = 0;
+        private string UserID = MainMenu.UserID;
+
+        static XDocument xDoc = XDocument.Load("../../Files/Settings.xml");
+        XElement root = xDoc.Element("Settings");
 
         public Settings()
         {
@@ -37,7 +38,10 @@ namespace TwitterClient.Pages
 
             foreach (XElement xElement in root.Elements("Save").ToList())
             {
-                xElement.Element("Theme").Value = checkTheme.ToString();
+                if (xElement.Element("UserID").Value == UserID)
+                {
+                    xElement.Element("Theme").Value = checkTheme.ToString();
+                }
             }
             xDoc.Save("../../Files/Settings.xml");
 
@@ -53,7 +57,10 @@ namespace TwitterClient.Pages
 
             foreach (XElement xElement in root.Elements("Save").ToList())
             {
-                xElement.Element("Theme").Value = checkTheme.ToString();
+                if (xElement.Element("UserID").Value == UserID)
+                {
+                    xElement.Element("Theme").Value = checkTheme.ToString();
+                }
             }
             xDoc.Save("../../Files/Settings.xml");
 
@@ -69,7 +76,10 @@ namespace TwitterClient.Pages
 
             foreach (XElement xElement in root.Elements("Save").ToList())
             {
-                xElement.Element("Color").Value = checkColor.ToString();
+                if (xElement.Element("UserID").Value == UserID)
+                {
+                    xElement.Element("Color").Value = checkColor.ToString();
+                }
             }
             xDoc.Save("../../Files/Settings.xml");
 
@@ -92,7 +102,10 @@ namespace TwitterClient.Pages
 
             foreach (XElement xElement in root.Elements("Save").ToList())
             {
-                xElement.Element("Color").Value = checkColor.ToString();
+                if (xElement.Element("UserID").Value == UserID)
+                {
+                    xElement.Element("Color").Value = checkColor.ToString();
+                }
             }
             xDoc.Save("../../Files/Settings.xml");
 
@@ -115,7 +128,10 @@ namespace TwitterClient.Pages
 
             foreach (XElement xElement in root.Elements("Save").ToList())
             {
-                xElement.Element("Color").Value = checkColor.ToString();
+                if (xElement.Element("UserID").Value == UserID)
+                {
+                    xElement.Element("Color").Value = checkColor.ToString();
+                }
             }
             xDoc.Save("../../Files/Settings.xml");
 

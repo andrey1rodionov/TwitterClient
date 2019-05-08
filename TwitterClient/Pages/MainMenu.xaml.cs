@@ -15,6 +15,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Xml.Linq;
 using TweetSharp;
 
 namespace TwitterClient.Pages
@@ -37,6 +38,7 @@ namespace TwitterClient.Pages
         public int UserFollowing { get; set; }
         public int UserFollowers { get; set; }
         public string UserName { get; set; }
+        public static string UserID { get; set; }
 
         public MainMenu(TwitterService twitter)
         {
@@ -54,6 +56,7 @@ namespace TwitterClient.Pages
             UserFollowing = user.FriendsCount;
             UserFollowers = user.FollowersCount;
             UserName = user.Name;
+            UserID = user.Id.ToString();
         }
 
         public void HideSendTweetComponents()
@@ -96,6 +99,66 @@ namespace TwitterClient.Pages
             image.EndInit();
 
             return image;
+        }
+
+        public void LoadSettingsForUser()
+        {
+            bool checkID = false;
+
+            XDocument xDoc = XDocument.Load("../../Files/Settings.xml");
+            XElement root = xDoc.Element("Settings");
+
+            foreach (XElement xElement in root.Elements("Save").ToList())
+            {
+                if (xElement.Element("UserID").Value == UserID)
+                {
+                    checkID = true;
+
+                    if (xElement.Element("Theme").Value == "1")
+                    {
+                        Uri uri = new Uri($"pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml");
+                        Application.Current.Resources.MergedDictionaries.RemoveAt(0);
+                        Application.Current.Resources.MergedDictionaries.Insert(0, new ResourceDictionary() { Source = uri });
+                    }
+                    else
+                    {
+                        Uri uri = new Uri($"pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Dark.xaml");
+                        Application.Current.Resources.MergedDictionaries.RemoveAt(0);
+                        Application.Current.Resources.MergedDictionaries.Insert(0, new ResourceDictionary() { Source = uri });
+                    }
+
+                    if (xElement.Element("Color").Value == "1")
+                    {
+                        Uri uri = new Uri($"pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.Cyan.xaml");
+                        Application.Current.Resources.MergedDictionaries.RemoveAt(2);
+                        Application.Current.Resources.MergedDictionaries.Insert(2, new ResourceDictionary() { Source = uri });
+                    }
+
+                    if (xElement.Element("Color").Value == "2")
+                    {
+                        Uri uri = new Uri($"pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.DeepPurple.xaml");
+                        Application.Current.Resources.MergedDictionaries.RemoveAt(2);
+                        Application.Current.Resources.MergedDictionaries.Insert(2, new ResourceDictionary() { Source = uri });
+                    }
+
+                    if (xElement.Element("Color").Value == "3")
+                    {
+                        Uri uri = new Uri($"pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.Teal.xaml");
+                        Application.Current.Resources.MergedDictionaries.RemoveAt(2);
+                        Application.Current.Resources.MergedDictionaries.Insert(2, new ResourceDictionary() { Source = uri });
+                    }
+                }
+            }
+
+            if (checkID == false)
+            {
+                root.Add(new XElement("Save",
+                    new XElement("UserID", UserID),
+                    new XElement("Theme", "1"),
+                    new XElement("Color", "1")));
+
+                xDoc.Save("../../Files/Settings.xml");
+            }
         }
 
         public async void ShowTweets(IEnumerable<TwitterStatus> tweets)
@@ -214,6 +277,11 @@ namespace TwitterClient.Pages
                 GreenMark.Source = new BitmapImage(new Uri("/Images/GreenCheckMark.png", UriKind.Relative));
                 checkImage = false;
             }
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            LoadSettingsForUser();
         }
     }
 }
