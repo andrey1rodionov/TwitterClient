@@ -44,7 +44,7 @@ namespace TwitterClient.Pages
             this.tweet = tweet;
 
             Author = tweet.Author.ScreenName;
-            Date = tweet.CreatedDate.ToString();
+            Date = tweet.CreatedDate.ToLocalTime().ToString("dd MMMM yyyy HH:mm");
 
             if (tweet.Text.Contains("http"))
             {
@@ -64,8 +64,8 @@ namespace TwitterClient.Pages
             else
             {
                 (img.Parent as Grid).Children.Remove(img);
-                Grid.SetRow(btn, 0);
-                Grid.SetRowSpan(btn, 2);
+                Grid.SetRow(RetweetButton, 0);
+                Grid.SetRowSpan(RetweetButton, 2);
             }
 
             DataContext = this;
@@ -102,7 +102,7 @@ namespace TwitterClient.Pages
         }
 
 
-        private void Retweet_Click(object sender, RoutedEventArgs e)
+        private void RetweetButton_Click(object sender, RoutedEventArgs e)
         {
             Retweet?.Invoke(tweet.Id);
         }

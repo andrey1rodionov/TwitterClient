@@ -13,6 +13,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Xml.Linq;
@@ -65,7 +66,7 @@ namespace TwitterClient.Pages
             ListBoxTweets.Visibility = Visibility.Visible;
         }
 
-        public void ShowSendTweetComponents()
+        public void ShowTweetComponents()
         {
             SendTweetGrid.Visibility = Visibility.Visible;
             ListBoxTweets.Visibility = Visibility.Hidden;
@@ -176,7 +177,6 @@ namespace TwitterClient.Pages
                     {
                         Tweet TweetInList = new Tweet(tweet);
                         TweetInList.Retweet += getTweets.RetweetTweet;
-                        //TweetInList.Retweet += this.IncreasetweetCount;
                         ListBoxTweets.Items.Add(TweetInList);
                     });
                 });
@@ -202,7 +202,7 @@ namespace TwitterClient.Pages
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.ToString() + ": \n" + ex.Message);
+                    ShowNotificationAnimation("Ошибка! Попробуйте еще раз");
                 }
             }
 
@@ -210,6 +210,19 @@ namespace TwitterClient.Pages
             {
                 GreenMark.Source = new BitmapImage(new Uri("/Images/GreenCheckMark.png", UriKind.Relative));
             }
+        }
+
+        private void ShowNotificationAnimation(string text)
+        {
+            LabelNotification.Content = text;
+
+            DoubleAnimation animation = new DoubleAnimation();
+
+            animation.From = NotificationBorder.ActualHeight;
+            animation.To = 40;
+            animation.Duration = TimeSpan.FromSeconds(1);
+            animation.AutoReverse = true;
+            NotificationBorder.BeginAnimation(Border.HeightProperty, animation);
         }
 
         private void AddFileToTweet_Click(object sender, RoutedEventArgs e)
@@ -235,14 +248,27 @@ namespace TwitterClient.Pages
 
         private void ShowSendTweetComponents_Click(object sender, RoutedEventArgs e)
         {
-            ShowSendTweetComponents();
+            ShowTweetComponents();
+
+            ShowUserInfo(getTweets.GetUserInfo());
         }
 
         private void SendTweet_Click(object sender, RoutedEventArgs e)
         {
-            getTweets.PublishTweet(TweetContentTextBox.Text, mediaFile);
-            GreenMark.Source = null;
-            mediaFile = null;
+            if ((TweetContentTextBox.Text != "") || (mediaFile != null))
+            {
+                getTweets.PublishTweet(TweetContentTextBox.Text, mediaFile);
+                TweetContentTextBox.Clear();
+                ShowNotificationAnimation("Ваш твит отправлен");
+                UserTweets++;
+                TweetCount.Text = UserTweets.ToString();
+                GreenMark.Source = null;
+                mediaFile = null;
+            }
+            else
+            {
+                ShowNotificationAnimation("Введите текст для нового твита");
+            }
         }
 
         private void OpenSettings_Click(object sender, RoutedEventArgs e)
@@ -282,6 +308,12 @@ namespace TwitterClient.Pages
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             LoadSettingsForUser();
+        }
+
+        private void TweetContentTextBox_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if ((TweetContentTextBox.Text.Length == 0) && (e.Key == Key.Space))
+                e.Handled = true;
         }
     }
 }

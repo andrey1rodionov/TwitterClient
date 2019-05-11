@@ -43,8 +43,8 @@
             </TextBlock>
 
             <Image x:Name="img" Grid.ColumnSpan="1" Grid.Row="2" HorizontalAlignment="Left" Margin="5" Source="{Binding Path=TweetImage}" MaxHeight="400"/>
-            
-            <Button x:Name="btn" Margin="1,2" Grid.Column="1" Grid.Row="2" Style="{DynamicResource MaterialDesignFloatingActionButton}" HorizontalAlignment="Left" VerticalAlignment="Bottom" Height="40" Width="40" Click="Retweet_Click">
+
+            <Button x:Name="RetweetButton" Margin="1,2" Grid.Column="1" Grid.Row="2" Style="{DynamicResource MaterialDesignFloatingActionButton}" HorizontalAlignment="Left" VerticalAlignment="Bottom" Height="40" Width="40" Click="RetweetButton_Click">
                 <Image Margin="7" Source="/Images/Retweet.png"/>
             </Button>
         </Grid>

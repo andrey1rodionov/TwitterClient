@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         Background="{DynamicResource MaterialDesignPaper}"
-        Title="TwitterClient" Height="350" Width="550" WindowStartupLocation="CenterScreen">
+        Title="TwitterClient" Height="350" Width="550" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="100*"></RowDefinition>

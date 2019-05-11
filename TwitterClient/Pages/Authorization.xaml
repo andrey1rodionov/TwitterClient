@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         Background="{DynamicResource MaterialDesignPaper}"
-        Title="Авторизация" Height="300" Width="500" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded">
+        Title="Авторизация" Height="300" Width="500" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded" ResizeMode="NoResize">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="60*"></RowDefinition>
