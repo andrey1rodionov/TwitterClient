@@ -60,6 +60,16 @@ namespace TwitterClient.Pages
             UserID = user.Id.ToString();
         }
 
+        public void UpdateInfo(TwitterUser user)
+        {
+            UserTweets = user.StatusesCount;
+            TweetCount.Text = UserTweets.ToString();
+            UserFollowing = user.FriendsCount;
+            FollowingCount.Text = UserFollowing.ToString();
+            UserFollowers = user.FollowersCount;
+            FollowersCount.Text = UserFollowers.ToString();
+        }
+
         public void HideSendTweetComponents()
         {
             SendTweetGrid.Visibility = Visibility.Hidden;
@@ -236,6 +246,7 @@ namespace TwitterClient.Pages
 
             ListBoxTweets.Items.Clear();
             ShowTweets(getTweets.GetTweetsInLine());
+            UpdateInfo(getTweets.GetUserInfo());
         }
 
         private void ShowMyTweets_Click(object sender, RoutedEventArgs e)
@@ -244,13 +255,14 @@ namespace TwitterClient.Pages
 
             ListBoxTweets.Items.Clear();
             ShowTweets(getTweets.GetMyTweets());
+            UpdateInfo(getTweets.GetUserInfo());
         }
 
         private void ShowSendTweetComponents_Click(object sender, RoutedEventArgs e)
         {
             ShowTweetComponents();
 
-            ShowUserInfo(getTweets.GetUserInfo());
+            UpdateInfo(getTweets.GetUserInfo());
         }
 
         private void SendTweet_Click(object sender, RoutedEventArgs e)

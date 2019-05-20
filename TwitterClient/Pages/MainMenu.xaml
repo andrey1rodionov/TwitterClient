@@ -95,6 +95,7 @@
                     </TextBlock>
 
                     <TextBlock Text="{Binding Path=UserFollowing}"
+                               Name="FollowingCount"
                                Grid.Row="1" 
                                FontSize="20" 
                                HorizontalAlignment="Center" FontFamily="Verdana">
@@ -115,6 +116,7 @@
                     </TextBlock>
 
                     <TextBlock Text="{Binding Path=UserFollowers}"
+                               Name="FollowersCount"
                                Grid.Row="1" 
                                FontSize="20" 
                                HorizontalAlignment="Center" FontFamily="Verdana">
