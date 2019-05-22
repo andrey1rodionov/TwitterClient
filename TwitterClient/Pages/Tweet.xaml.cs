@@ -101,7 +101,6 @@ namespace TwitterClient.Pages
             return image;
         }
 
-
         private void RetweetButton_Click(object sender, RoutedEventArgs e)
         {
             Retweet?.Invoke(tweet.Id);

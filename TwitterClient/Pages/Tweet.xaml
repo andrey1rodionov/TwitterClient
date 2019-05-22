@@ -46,6 +46,11 @@
 
             <Button x:Name="RetweetButton" Margin="1,2" Grid.Column="1" Grid.Row="2" Style="{DynamicResource MaterialDesignFloatingActionButton}" HorizontalAlignment="Left" VerticalAlignment="Bottom" Height="40" Width="40" Click="RetweetButton_Click">
                 <Image Margin="7" Source="/Images/Retweet.png"/>
+                <Button.ToolTip>
+                    <ToolTip>
+                        Ретвитнуть
+                    </ToolTip>
+                </Button.ToolTip>
             </Button>
         </Grid>
         <Rectangle Grid.Row="3" VerticalAlignment="Bottom" Margin="0, 10, 0, 0" Height="1" Fill="#009789" Grid.ColumnSpan="2"/>
