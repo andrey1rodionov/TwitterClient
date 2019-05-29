@@ -15,8 +15,8 @@
         </Grid.ColumnDefinitions>
 
         <Menu Height="25" VerticalAlignment="Top">
-            <MenuItem Header="Настройки" Height="25" FontFamily="Verdana" FontSize="14" Name="OpenSettings" Click="OpenSettings_Click">
-            </MenuItem>
+            <MenuItem Header="Настройки" Height="25" FontFamily="Verdana" FontSize="14" Name="OpenSettings" Click="OpenSettings_Click"></MenuItem>
+            <MenuItem Header="Справка" Height="25" FontFamily="Verdana" FontSize="14" Name="OpenHelp" Click="OpenHelp_Click"></MenuItem>
         </Menu>
 
         <Rectangle 
