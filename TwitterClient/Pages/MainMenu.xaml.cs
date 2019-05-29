@@ -1,6 +1,7 @@
 ﻿using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -326,6 +327,11 @@ namespace TwitterClient.Pages
         {
             if ((TweetContentTextBox.Text.Length == 0) && (e.Key == Key.Space))
                 e.Handled = true;
+        }
+
+        private void OpenHelp_Click(object sender, RoutedEventArgs e)
+        {
+            Process.Start(@"..\..\Files\TwitterClientHelp.chm");
         }
     }
 }
