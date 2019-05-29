@@ -161,7 +161,13 @@
                     <RowDefinition Height="59*"/>
                 </Grid.RowDefinitions>
 
-                <TextBox Name="TweetContentTextBox" HorizontalAlignment="Stretch" TextWrapping="Wrap" Margin="0,0,-1,54" Grid.RowSpan="2" MaxLength="280" FontFamily="Verdana" Grid.Row="1" PreviewKeyDown="TweetContentTextBox_PreviewKeyDown"/>
+                <TextBox Name="TweetContentTextBox" HorizontalAlignment="Stretch" TextWrapping="Wrap" Margin="0,0,-1,54" Grid.RowSpan="2" MaxLength="280" FontFamily="Verdana" Grid.Row="1" PreviewKeyDown="TweetContentTextBox_PreviewKeyDown">
+                    <TextBox.ToolTip>
+                        <ToolTip>
+                            Новый твит
+                        </ToolTip>
+                    </TextBox.ToolTip>
+                </TextBox>
 
                 <Button Margin="3,12,0,7" Grid.Row="2" Style="{DynamicResource MaterialDesignFloatingActionButton}" HorizontalAlignment="Left" Height="Auto" Width="40" Name="AddFileToTweet" Click="AddFileToTweet_Click">
                     <Image Margin="8" Source="/Images/File.png"/>
